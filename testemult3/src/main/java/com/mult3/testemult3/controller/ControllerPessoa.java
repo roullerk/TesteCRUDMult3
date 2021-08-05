@@ -27,8 +27,8 @@ public class ControllerPessoa {
     private RepositoryPessoa repository;
 
     @GetMapping
-    public Iterable<Pessoa> list(){
-        return repository.findAll();
+    public ResponseEntity<Iterable<Pessoa>> GetAll(){
+        return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/id/{id}")
@@ -41,10 +41,6 @@ public class ControllerPessoa {
         return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
     }
 
-    @GetMapping("/idade/{idade}")
-    public ResponseEntity<List<Pessoa>> GetByIdade(@PathVariable int idade){
-        return ResponseEntity.ok(repository.findAllByIdadeContainingIgnoreCase(idade));
-    }
 
     @PostMapping
     public ResponseEntity<Pessoa> Post(@RequestBody Pessoa pessoa){
